@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\BoxController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -24,6 +25,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/blog/{id}/edit', [BlogController::class, 'edit'])->name('blog.edit');
     Route::put('/blog/{id}', [BlogController::class, 'update'])->name('blog.update');
     Route::delete('/blog/{id}', [BlogController::class, 'destroy'])->name('blog.destroy');
+
+    Route::get('/box', [BoxController::class, 'index'])->name('box.index');
+    Route::get('/box/{id}/show', [BoxController::class, 'show'])->name('box.show');
+    Route::get('/box/create', [BoxController::class, 'create'])->name('box.create');
+    Route::post('/box', [BoxController::class, 'store'])->name('box.store');
+    Route::get('/box/{id}/edit', [BoxController::class, 'edit'])->name('box.edit');
+    Route::put('/box/{id}', [BoxController::class, 'update'])->name('box.update');
+    Route::delete('/box/{id}', [BoxController::class, 'destroy'])->name('box.destroy');
 });
 
 require __DIR__.'/auth.php';
