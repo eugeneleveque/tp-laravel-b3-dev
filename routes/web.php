@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\BoxController;
+use App\Http\Controllers\TenantController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -33,6 +34,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/box/{id}/edit', [BoxController::class, 'edit'])->name('box.edit');
     Route::put('/box/{id}', [BoxController::class, 'update'])->name('box.update');
     Route::delete('/box/{id}', [BoxController::class, 'destroy'])->name('box.destroy');
+
+    Route::get('/tenant', [TenantController::class, 'index'])->name('tenant.index');
+    Route::get('/tenant/{id}/show', [TenantController::class, 'show'])->name('tenant.show');    
+    Route::get('/tenant/create', [TenantController::class, 'create'])->name('tenant.create');    
+    Route::post('/tenant', [TenantController::class, 'store'])->name('tenant.store');    
+    Route::get('/tenant/{id}/edit', [TenantController::class, 'edit'])->name('tenant.edit');    
+    Route::put('/tenant/{id}', [TenantController::class, 'update'])->name('tenant.update');    
+    Route::delete('/tenant/{id}', [TenantController::class, 'destroy'])->name('tenant.destroy');
 });
 
 require __DIR__.'/auth.php';
