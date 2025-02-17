@@ -5,6 +5,8 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\BoxController;
 use App\Http\Controllers\TenantController;
 use App\Http\Controllers\ContractController;
+use App\Http\Controllers\ContractTemplateController;
+
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -43,6 +45,15 @@ Route::middleware('auth')->group(function () {
     Route::get('/tenant/{id}/edit', [TenantController::class, 'edit'])->name('tenant.edit');    
     Route::put('/tenant/{id}', [TenantController::class, 'update'])->name('tenant.update');    
     Route::delete('/tenant/{id}', [TenantController::class, 'destroy'])->name('tenant.destroy');
+
+    Route::get('/contract_templates', [ContractTemplateController::class, 'index'])->name('contract_templates.index');
+    Route::get('/contract_templates/{contractTemplate}/show', [ContractTemplateController::class, 'show'])->name('contract_templates.show');    
+    Route::get('/contract_templates/create', [ContractTemplateController::class, 'create'])->name('contract_templates.create');    
+    Route::post('/contract_templates', [ContractTemplateController::class, 'store'])->name('contract_templates.store');    
+    Route::get('/contract_templates/{contractTemplate}/edit', [ContractTemplateController::class, 'edit'])->name('contract_templates.edit');    
+    Route::put('/contract_templates/{contractTemplate}', [ContractTemplateController::class, 'update'])->name('contract_templates.update');    
+    Route::delete('/contract_templates/{contractTemplate}', [ContractTemplateController::class, 'destroy'])->name('contract_templates.destroy');
+
 
     Route::get('/contract', [ContractController::class, 'index'])->name('contract.index');
     Route::get('/contract/{id}/show', [ContractController::class, 'show'])->name('contract.show');    
