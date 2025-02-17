@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\BoxController;
 use App\Http\Controllers\TenantController;
+use App\Http\Controllers\ContractController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -42,6 +43,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/tenant/{id}/edit', [TenantController::class, 'edit'])->name('tenant.edit');    
     Route::put('/tenant/{id}', [TenantController::class, 'update'])->name('tenant.update');    
     Route::delete('/tenant/{id}', [TenantController::class, 'destroy'])->name('tenant.destroy');
+
+    Route::get('/contract', [ContractController::class, 'index'])->name('contract.index');
+    Route::get('/contract/{id}/show', [ContractController::class, 'show'])->name('contract.show');    
+    Route::get('/contract/create', [ContractController::class, 'create'])->name('contract.create');    
+    Route::post('/contract', [ContractController::class, 'store'])->name('contract.store');    
+    Route::get('/contract/{id}/edit', [ContractController::class, 'edit'])->name('contract.edit');    
+    Route::put('/contract/{id}', [ContractController::class, 'update'])->name('contract.update');    
+    Route::delete('/contract/{id}', [ContractController::class, 'destroy'])->name('contract.destroy');
 });
 
 require __DIR__.'/auth.php';

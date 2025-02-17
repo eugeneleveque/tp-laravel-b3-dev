@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class box extends Model
+class Box extends Model
 {
     use HasFactory;
 
@@ -16,9 +16,14 @@ class box extends Model
         "size",
         "price",
         "location",
-        "status"
+        "status",
     ];
     public function owner(){
         return $this->belongsTo(User::class, 'user_id');
     }
+    public function contracts()
+    {
+        return $this->hasMany(Contract::class);
+    }
+
 }

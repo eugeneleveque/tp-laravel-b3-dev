@@ -14,7 +14,7 @@ class BoxFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => User::factory(), // Crée un utilisateur aléatoire
+            'owner_id' => random_int(1, User::count()),
             'name' => $this->faker->word(),
             'size' => $this->faker->numberBetween(5, 50), // Taille aléatoire entre 5 et 50 m²
             'price' => $this->faker->randomFloat(2, 50, 500), // Prix aléatoire entre 50€ et 500€

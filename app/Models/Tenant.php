@@ -10,14 +10,19 @@ class Tenant extends Model
     use HasFactory;
 
     protected $fillable = [
+        'owner_id',
         'name',
         'phone',
         'email',
         'address',
         'bank_account',
     ];
-    //relation avec boxes
-    // public function boxes() {
-    //     return $this->hasMany(Box::class);
-    // }
+    public function owner(){
+        return $this->belongsTo(User::class, 'user_id');
+    }
+    public function contracts()
+    {
+        return $this->hasMany(Contract::class);
+    }
+    
 }

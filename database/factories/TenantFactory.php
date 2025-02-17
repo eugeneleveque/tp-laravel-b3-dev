@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Tenant;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class TenantFactory extends Factory
@@ -15,6 +16,7 @@ class TenantFactory extends Factory
     public function definition(): array
     {
         return [
+            'owner_id' => User::inRandomOrder()->first()->id,  // Choisir un utilisateur existant au hasard
             'name' => $this->faker->name(),
             'phone' => $this->faker->phoneNumber(),
             'email' => $this->faker->unique()->safeEmail(),
