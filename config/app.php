@@ -127,10 +127,10 @@ return [
     //     Barryvdh\Debugbar\ServiceProvider::class,
     // ],
     
-    'aliases' => [
-        // autres alias...
-        'PDF' => Barryvdh\DomPDF\Facade::class,
-    ],
+    // 'aliases' => [
+    //     // autres alias...
+    //     'PDF' => Barryvdh\DomPDF\Facade::class,
+    // ],
     
     
 

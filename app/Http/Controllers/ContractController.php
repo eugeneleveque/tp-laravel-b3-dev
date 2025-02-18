@@ -154,27 +154,27 @@ class ContractController extends Controller
         return $contractText;
     }
 
-    public function generatePdf($id)
-{
-    // Récupérer le contrat
-    $contract = Contract::findOrFail($id);
-    
-    // Récupérer le modèle de contrat et son contenu
-    $contractTemplate = $contract->contractTemplate;
-    $contractContent = json_decode($contractTemplate->content, true); // Décoder le JSON
-    
-    // Récupérer le locataire et le propriétaire
-    $tenant = $contract->tenant;
-    $landlord = Auth::user(); // Le propriétaire est l'utilisateur connecté
-    
-    // Remplacer les placeholders dans le modèle de contrat
-    $contractText = $this->replaceContractVariables($contract, $contractContent['blocks'], $tenant, $landlord);
+    // public function generatePdf($id)
+    // {
+    //     // Récupérer le contrat
+    //     $contract = Contract::findOrFail($id);
+        
+    //     // Récupérer le modèle de contrat et son contenu
+    //     $contractTemplate = $contract->contractTemplate;
+    //     $contractContent = json_decode($contractTemplate->content, true); // Décoder le JSON
+        
+    //     // Récupérer le locataire et le propriétaire
+    //     $tenant = $contract->tenant;
+    //     $landlord = Auth::user(); // Le propriétaire est l'utilisateur connecté
+        
+    //     // Remplacer les placeholders dans le modèle de contrat
+    //     $contractText = $this->replaceContractVariables($contract, $contractContent['blocks'], $tenant, $landlord);
 
-    // Générer le PDF
-    $pdf = PDF::loadView('contract.pdf', compact('contract', 'contractText'));
+    //     // Générer le PDF
+    //     $pdf = PDF::loadView('contract.pdf', compact('contract', 'contractText'));
 
-    // Retourner le PDF en téléchargement
-    return $pdf->download('contrat_' . $contract->id . '.pdf');
-}
+    //     // Retourner le PDF en téléchargement
+    //     return $pdf->download('contrat_' . $contract->id . '.pdf');
+    // }
 
 }

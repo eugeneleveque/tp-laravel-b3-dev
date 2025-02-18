@@ -9,10 +9,6 @@ use App\Http\Controllers\ContractTemplateController;
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -62,7 +58,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/contract/{id}/edit', [ContractController::class, 'edit'])->name('contract.edit');    
     Route::put('/contract/{id}', [ContractController::class, 'update'])->name('contract.update');    
     Route::delete('/contract/{id}', [ContractController::class, 'destroy'])->name('contract.destroy');
-    Route::get('contract/{id}/generate-pdf', [ContractController::class, 'generatePdf'])->name('contract.generate_pdf');
+    // Route::get('contract/{id}/generate-pdf', [ContractController::class, 'generatePdf'])->name('contract.generate_pdf');
 
 });
 
