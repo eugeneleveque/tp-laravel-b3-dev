@@ -17,6 +17,7 @@ class Tenant extends Model
         'address',
         'bank_account',
     ];
+
     public function owner(){
         return $this->belongsTo(User::class, 'user_id');
     }

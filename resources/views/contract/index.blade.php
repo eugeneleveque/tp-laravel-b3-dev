@@ -1,16 +1,22 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="container">
     <h1>Liste des Contrats</h1>
-    <a href="{{ route('contract.create') }}">Ajouter un Contrat</a>
-    <table>
+    <a href="{{ route('contract.create') }}">Créer un contrat</a>
+
+    @if (session('success'))
+        <div class="alert alert-success">{{ session('success') }}</div>
+    @endif
+
+    <table class="table">
         <thead>
             <tr>
                 <th>Box</th>
                 <th>Locataire</th>
-                <th>Date de début</th>
-                <th>Date de fin</th>
-                <th>Statut</th>
+                <th>Prix Mensuel</th>
+                <th>Début</th>
+                <th>Fin</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -19,26 +25,22 @@
                 <tr>
                     <td>{{ $contract->box->name }}</td>
                     <td>{{ $contract->tenant->name }}</td>
+                    <td>{{ $contract->monthly_price }} €</td>
                     <td>{{ $contract->start_date }}</td>
+                    <td>{{ $contract->end_date }}</td>
                     <td>
-                        @if($contract->status === 'En cours')
-                            <span style="color: green;">En cours</span>
-                        @else
-                            <span style="color: red;">{{ $contract->status }}</span> 
-                            <!-- Ici, ça affichera la date de fin -->
-                        @endif
-                    </td>                    
-                    <td>
-                        <a href="{{ route('contract.show', $contract->id) }}">Voir</a>
+                        <a href="{{ route('contract.show', $contract->id) }}">Voir ce contrat</a>
                         <a href="{{ route('contract.edit', $contract->id) }}">Modifier</a>
-                        <form action="{{ route('contract.destroy', $contract->id) }}" method="POST" style="display:inline;">
+                        <form action="{{ route('contract.destroy', $contract->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button type="submit">Supprimer</button>
+                            <button type="submit" onclick="return confirm('Voulez-vous vraiment supprimer ce contrat ?')">Supprimer</button>
                         </form>
+
                     </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
+</div>
 @endsection

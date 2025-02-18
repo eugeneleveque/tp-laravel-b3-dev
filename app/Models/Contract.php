@@ -4,14 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Carbon\Carbon;
 
 
 class Contract extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['box_id', 'tenant_id', 'start_date', 'end_date'];
+    protected $fillable = ['box_id', 'tenant_id', 'user_id', 'contract_template_id', 'monthly_price', 'start_date', 'end_date'];
 
     public function box()
     {
@@ -23,15 +22,14 @@ class Contract extends Model
         return $this->belongsTo(Tenant::class);
     }
 
-    public function getStatusAttribute(): string
+    public function user()
     {
-        $today = Carbon::today();
-
-        if ($today->between($this->start_date, $this->end_date)) {
-            return 'En cours';
-        }
-
-        return $this->end_date; // Retourne la date de fin si le contrat est terminé
+        return $this->belongsTo(User::class);
     }
 
+    public function contractTemplate()
+    {
+        return $this->belongsTo(ContractTemplate::class);
+    }
+    
 }

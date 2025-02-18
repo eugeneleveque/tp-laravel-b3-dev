@@ -2,40 +2,30 @@
 
 namespace Database\Factories;
 
+use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Contract;
 use App\Models\Box;
 use App\Models\Tenant;
-use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\User;
+use App\Models\ContractTemplate;
 
+/**
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Contract>
+ */
 class ContractFactory extends Factory
 {
     protected $model = Contract::class;
 
-    public function definition(): array
+    public function definition()
     {
-        $box = Box::inRandomOrder()->first();
-        $tenant = Tenant::inRandomOrder()->first();
-
-        do {
-            $start_date = fake()->dateTimeBetween('-1 year', 'now');
-            $end_date = fake()->dateTimeBetween($start_date, '+6 months');
-        } while (Contract::where('box_id', $box->id)
-            ->where(function ($query) use ($start_date, $end_date) {
-                $query->whereBetween('start_date', [$start_date, $end_date])
-                    ->orWhereBetween('end_date', [$start_date, $end_date])
-                    ->orWhere(function ($query) use ($start_date, $end_date) {
-                        $query->where('start_date', '<=', $start_date)
-                            ->where('end_date', '>=', $end_date);
-                    });
-            })
-            ->exists());
-
         return [
-            'box_id' => $box->id,
-            'tenant_id' => $tenant->id,
-            'start_date' => $start_date,
-            'end_date' => $end_date,
+            'box_id' => Box::inRandomOrder()->first()->id ?? Box::factory(),
+            'tenant_id' => Tenant::inRandomOrder()->first()->id ?? Tenant::factory(),
+            'user_id' => User::inRandomOrder()->first()->id ?? User::factory(),
+            'contract_template_id' => ContractTemplate::inRandomOrder()->first()->id ?? ContractTemplate::factory(),
+            'monthly_price' => $this->faker->randomFloat(2, 50, 500), // Prix entre 50 et 500€
+            'start_date' => now(),
+            'end_date' => now()->addMonths($this->faker->numberBetween(3, 24)), // Entre 3 et 24 mois
         ];
     }
-
 }

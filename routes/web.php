@@ -62,6 +62,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/contract/{id}/edit', [ContractController::class, 'edit'])->name('contract.edit');    
     Route::put('/contract/{id}', [ContractController::class, 'update'])->name('contract.update');    
     Route::delete('/contract/{id}', [ContractController::class, 'destroy'])->name('contract.destroy');
+    Route::get('contract/{id}/generate-pdf', [ContractController::class, 'generatePdf'])->name('contract.generate_pdf');
+
 });
 
 require __DIR__.'/auth.php';
