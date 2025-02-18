@@ -15,6 +15,27 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('box.index')" :active="request()->routeIs('box.index')">
+                        {{ __('Box') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('tenant.index')" :active="request()->routeIs('tenant.index')">
+                        {{ __('Locataires') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('contract.index')" :active="request()->routeIs('contract.index')">
+                        {{ __('Contrats') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('contract_templates.index')" :active="request()->routeIs('contract_templates.index')">
+                        {{ __('Template de contrat') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('bill.index')" :active="request()->routeIs('bill.index')">
+                        {{ __('Factures') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('blog.index')" :active="request()->routeIs('blog.index')">
+                        {{ __('Blog') }}
+                    </x-nav-link>
+
+
+
                 </div>
             </div>
 

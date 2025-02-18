@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
+
 
 class Bill extends Model
 {
@@ -14,6 +16,9 @@ class Bill extends Model
         'paiement_date',
         'periode_number',
         'contract_id',
+    ];
+    protected $casts = [
+        'paiement_date' => 'date', // Laravel va automatiquement caster en objet Carbon
     ];
 
     public function contract()
