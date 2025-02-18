@@ -4,6 +4,11 @@
 <div class="container">
     <h1>Liste des Contrats</h1>
     <a href="{{ route('contract.create') }}">Créer un contrat</a>
+    <form action="{{ route('bill.store') }}" method="POST">
+        @csrf
+        <button type="submit" class="btn btn-primary">Générer les factures du mois</button>
+    </form>
+
 
     @if (session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>

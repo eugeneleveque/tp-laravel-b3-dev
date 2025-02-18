@@ -19,7 +19,6 @@
 
     <a href="{{ route('contract.index') }}" class="btn btn-secondary">Voir tous les contrats</a>
     <a href="{{ route('contract.edit', $contract->id) }}" class="btn btn-primary">Modifier</a>
-    <a href="{{ route('contract.generate_pdf', $contract->id) }}" class="btn btn-success">Télécharger le contrat PDF</a>
 </div>
 
     <h3>Contenu du Contrat</h3>

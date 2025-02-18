@@ -6,6 +6,8 @@ use App\Http\Controllers\BoxController;
 use App\Http\Controllers\TenantController;
 use App\Http\Controllers\ContractController;
 use App\Http\Controllers\ContractTemplateController;
+use App\Http\Controllers\BillController;
+
 
 use Illuminate\Support\Facades\Route;
 
@@ -59,6 +61,16 @@ Route::middleware('auth')->group(function () {
     Route::put('/contract/{id}', [ContractController::class, 'update'])->name('contract.update');    
     Route::delete('/contract/{id}', [ContractController::class, 'destroy'])->name('contract.destroy');
     // Route::get('contract/{id}/generate-pdf', [ContractController::class, 'generatePdf'])->name('contract.generate_pdf');
+
+    Route::get('bill', [BillController::class, 'index'])->name('bill.index');  // Afficher toutes les factures
+    Route::get('/bill/{id}/show', [BillController::class, 'show'])->name('bill.show');
+    Route::get('/bill/create', [BillController::class, 'create'])->name('bill.create');
+    Route::post('/bill', [BillController::class, 'store'])->name('bill.store');  // Générer des factures
+    Route::get('bill/{id}/edit', [BillController::class, 'edit'])->name('bill.edit');
+    Route::put('bill/{id}', [BillController::class, 'update'])->name('bill.update');
+    
+
+
 
 });
 
